@@ -138,7 +138,7 @@ class Window(QtWidgets.QDialog):
         self.label_rho_Heston.setText(f"ρ = {self.ρ_Heston}")
         
         # Make sure window size is set
-        self.setGeometry(0, 0, 1320, 768)
+        self.setGeometry(0, 0, 1366, 768)
 
     # Heston model
     def on_change_t1_Heston(self, value):
