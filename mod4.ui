@@ -728,6 +728,25 @@
       <string>Path</string>
      </property>
     </widget>
+    <widget class="QLabel" name="label_Message_Merton">
+     <property name="geometry">
+      <rect>
+       <x>1070</x>
+       <y>470</y>
+       <width>201</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Tahoma</family>
+       <pointsize>9</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
    </widget>
    <widget class="QWidget" name="tab">
     <attribute name="title">
@@ -761,7 +780,7 @@
        <x>1040</x>
        <y>40</y>
        <width>251</width>
-       <height>461</height>
+       <height>431</height>
       </rect>
      </property>
      <property name="title">
@@ -1465,6 +1484,25 @@
        <string>1000</string>
       </property>
      </item>
+    </widget>
+    <widget class="QLabel" name="label_Message_Heston">
+     <property name="geometry">
+      <rect>
+       <x>1060</x>
+       <y>490</y>
+       <width>201</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Tahoma</family>
+       <pointsize>9</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
     </widget>
    </widget>
   </widget>

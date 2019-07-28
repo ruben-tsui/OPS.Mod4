@@ -14,7 +14,7 @@ from matplotlib.widgets import Slider, Button, RadioButtons
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
-from matplotlib.ticker import FuncFormatter
+from matplotlib.ticker import FuncFormatter, MaxNLocator
 # Ensure using PyQt5 backend
 import matplotlib as mpl
 mpl.use('QT5Agg')
@@ -63,6 +63,7 @@ class Window(QtWidgets.QDialog):
         self.S = []
         self.SN = []
         self.path_Merton = 0  # this is the path being selected currently
+        self.poisson_jumps = []
         self.returns = []
         ## Heston
         self.S0_Heston = 100
@@ -134,7 +135,7 @@ class Window(QtWidgets.QDialog):
         self.label_kappa_Heston.setText(f"κ = {self.κ_Heston}")
         self.label_theta_Heston.setText(f"θ = {self.θ_Heston}")
         self.label_sigma_Heston.setText(f"σ = {self.σ_Heston}")
-        self.label_v0_Heston.setText(f"σ = {self.v0_Heston}")
+        self.label_v0_Heston.setText(f"v0 = {self.v0_Heston}")
         self.label_rho_Heston.setText(f"ρ = {self.ρ_Heston}")
         
         # Make sure window size is set
@@ -206,6 +207,9 @@ class Window(QtWidgets.QDialog):
         self.showGraph()
 
     def simulate_Merton(self):
+        self.label_Message_Merton.setText('Processing...')
+        self.label_Message_Merton.repaint()
+        QApplication.setOverrideCursor(QtCore.Qt.WaitCursor)
         #S0 = 100
         #K = 100; r = 0.025; q = 0.005; σ = 0.2; T = 1.0
         S0 = self.S0
@@ -222,12 +226,21 @@ class Window(QtWidgets.QDialog):
         #print(f"params = {params}")
         self.params = params
         self.SN = []
+        self.poisson_jumps = []
         for i in range(self.N):
-            self.SN.append(mjd(self.params))
+            log_stock_prices, poisson_jump = mjd(self.params)
+            self.SN.append(log_stock_prices)
+            self.poisson_jumps.append(poisson_jump)
         self.SN = np.array(self.SN)
+        self.poisson_jumps = np.array(self.poisson_jumps)
+        self.label_Message_Merton.setText('')
         self.showGraph()
+        QApplication.restoreOverrideCursor()
 
     def simulate_Heston(self):
+        self.label_Message_Heston.setText('Processing...')
+        self.label_Message_Heston.repaint()
+        QApplication.setOverrideCursor(QtCore.Qt.WaitCursor)
         #S0 = 100
         #K = 100; r = 0.025; q = 0.005; σ = 0.2; T = 1.0
         S0 = self.S0_Heston
@@ -252,7 +265,9 @@ class Window(QtWidgets.QDialog):
             self.volatility_Heston.append(volatility)
         self.SN_Heston = np.array(self.SN_Heston)
         self.volatility_Heston = np.array(self.volatility_Heston)
+        self.label_Message_Heston.setText('')
         self.showGraph_Heston()
+        QApplication.restoreOverrideCursor()
 
 
     def showGraph(self):
@@ -272,17 +287,18 @@ class Window(QtWidgets.QDialog):
         Δt = self.Δt
         self.S = self.SN[self.path_Merton]
 
-        s4.set_visible(False)
 
         s1.clear()
+        s1.grid(True)
         s1.set_title('Metron Jump Diffusion $S_t$', fontsize=14, color='brown')
         s1.yaxis.set_tick_params(labelright=False, labelleft=True)
-        s1.grid(True)
+        s1.axvline(x=self.t, color="blue", alpha=0.5, linewidth=2)
         s1.plot(self.S, 'b', lw=0.5, label='present value')
 
         s2.clear()
         s2.set_title(r'$ln{\frac{S_{t+Δt}}{S_t}}$', fontsize=14, color='brown')
-        s2.axvline(x=self.t, color="blue", alpha=0.5, linewidth=1)
+        s2.yaxis.set_major_formatter(FuncFormatter('{0:.0%}'.format))
+        s2.axvline(x=self.t, color="blue", alpha=0.5, linewidth=2)
         s2.grid(True)
         M = self.S[t]
         returns = [ log(self.S[t+1]) - log(self.S[t]) for t in range(0, self.S.size-1)]
@@ -304,13 +320,27 @@ class Window(QtWidgets.QDialog):
         returns = [ log(self.SN[:,self.t]) - log(self.SN[:,self.t-1])] 
         s3.clear()
         s3.hist(returns, density=True, bins=20, orientation='vertical', alpha=0.40, color='green')
-        s3.set_title(r"Return Distribution", fontsize=14, color='brown')
+        s3.set_title(r"Return Distribution", fontsize=11, color='brown')
         s3.yaxis.set_ticks_position("right")
         s3.xaxis.set_major_formatter(FuncFormatter('{0:.1%}'.format))
 
         s3.grid(True)
         s3.tick_params(axis = 'both', which = 'major', labelsize = 6)
         s3.set_xlabel('Return', fontsize=8, color='brown')
+
+        ###############################################################
+        # Plot s4: No. of jumps distribution histogram 
+        ###############################################################
+        s4.set_visible(True)
+        s4.clear()
+        s4.hist( [ self.poisson_jumps[n, :self.t+1].sum() for n in range(0,self.N) ], bins=None, \
+            density=True, facecolor='orange', alpha=0.75)
+        s4.set_title(r"Poisson Jump Distribution", fontsize=11, color='brown')
+        #s4.xaxis.set_major_formatter(FuncFormatter('{0}'.format))
+        s4.xaxis.set_major_locator(MaxNLocator(integer=True))
+        s4.grid(True)
+        s4.tick_params(axis = 'both', which = 'major', labelsize = 6)
+        s4.set_xlabel('No. of jumps', fontsize=8, color='brown')
 
         mpl.fig.set_visible(True)
         mpl.draw()
@@ -352,13 +382,14 @@ class Window(QtWidgets.QDialog):
         s1.clear()
         s1.set_title('Heston Stochastic Volatility Model $S_t$', fontsize=11, color='brown')
         s1.yaxis.set_tick_params(labelright=False, labelleft=True)
+        s1.axvline(x=self.t_Heston, color="blue", alpha=0.5, linewidth=2)
         s1.grid(True)
         s1.plot(self.S_Heston, 'b', lw=0.5, label='present value')
 
         s2.clear()
-        s2.set_title(r'$ln{\frac{S_{t+Δt}}{S_t}}$', fontsize=12, color='brown')
+        s2.set_title(r'$ln{\frac{S_{t+Δt}}{S_t}}$', fontsize=14, color='brown')
         s2.axvline(x=self.t_Heston, color="blue", alpha=0.5, linewidth=2)
-        s2.yaxis.set_major_formatter(FuncFormatter('{0:.1%}'.format))
+        s2.yaxis.set_major_formatter(FuncFormatter('{0:.0%}'.format))
         #s2.axvline(x=self.t, color="blue", alpha=0.5, linewidth=1)
         s2.grid(True)
         M = self.S_Heston[t]
@@ -397,8 +428,8 @@ class Window(QtWidgets.QDialog):
         ###############################################################
         volatility_at_t = self.volatility_Heston[:,self.t_Heston]
         s4.clear()
-        s4.hist(volatility_at_t, density=True, stacked=True, bins=25, orientation='vertical', alpha=0.70, color='orange')
-        s4.set_title(r"Stochastic Volatility Distribution", fontsize=14, color='brown')
+        s4.hist(volatility_at_t, bins=25, density=True, orientation='vertical', alpha=0.70, color='orange')
+        s4.set_title(r"Stochastic Volatility Distribution", fontsize=11, color='brown')
         s4.xaxis.set_major_formatter(FuncFormatter('{0:.1%}'.format))
         s4.grid(True)
         s4.tick_params(axis = 'both', which = 'major', labelsize = 6)
@@ -421,5 +452,5 @@ if __name__ == '__main__':
     window = Window()
     w = window
     window.show()
-    sys.exit(app.exec_())
+    #sys.exit(app.exec_())
 
