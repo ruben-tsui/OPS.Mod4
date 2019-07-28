@@ -39,6 +39,7 @@ def merton_jump_diffusion_simulate(params):
 
     M = np.int(1/Δt)
     S = np.zeros(M + 1)
+    N = np.zeros(M + 1, dtype=np.int32)
     S[0] = S0
 
     k = exp(γ + δ*δ/2) - 1
@@ -46,10 +47,10 @@ def merton_jump_diffusion_simulate(params):
 
     for t in range(1, M + 1):
         Z = norm.rvs(0, 1)
-        N = poisson.rvs(λ * Δt)
-        X = sum([norm.rvs(γ, δ*δ) for i in range(0, N)])
+        N[t] = poisson.rvs(λ * Δt)
+        X = sum([norm.rvs(γ, δ*δ) for i in range(0, N[t])])
         S[t] = S[t - 1] + (μ - σ*σ/2) * Δt + σ * sqrt(Δt) * Z + X
-    return exp(S)
+    return exp(S), N
 
 def heston_stochastic_volatility_simulate(params):
     '''
