@@ -35,6 +35,16 @@ from scipy.stats import norm
 
 from Simulation import merton_jump_diffusion_simulate as mjd, heston_stochastic_volatility_simulate as hsv
 
+class HelpPage1(QDialog):
+    def __init__(self):
+        super(HelpPage1, self).__init__()
+        uic.loadUi('help_dialog1.ui', self)
+
+class HelpPage2(QDialog):
+    def __init__(self):
+        super(HelpPage2, self).__init__()
+        uic.loadUi('help_dialog2.ui', self)
+
 class Window(QtWidgets.QDialog):
     def __init__(self):
         QtWidgets.QDialog.__init__(self)
@@ -113,6 +123,9 @@ class Window(QtWidgets.QDialog):
         self.button_Simulate_Heston.clicked.connect(self.simulate_Heston)
         self.slider_t1_Heston.valueChanged.connect(self.on_change_t1_Heston)
 
+        self.button_Help_Merton.clicked.connect(self.executeHelpPage1)
+        self.button_Help_Heston.clicked.connect(self.executeHelpPage2)
+
         # pick a simulated path
         self.button_PickSim_Heston.clicked.connect(self.PickSim_Heston)
         self.button_PickSim_Merton.clicked.connect(self.PickSim_Merton)
@@ -140,6 +153,14 @@ class Window(QtWidgets.QDialog):
         
         # Make sure window size is set
         self.setGeometry(0, 0, 1366, 768)
+
+    def executeHelpPage1(self):
+        help_page = HelpPage1()
+        help_page.exec_()
+
+    def executeHelpPage2(self):
+        help_page = HelpPage2()
+        help_page.exec_()
 
     # Heston model
     def on_change_t1_Heston(self, value):

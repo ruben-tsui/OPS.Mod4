@@ -44,7 +44,7 @@
     <bool>false</bool>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>1</number>
    </property>
    <widget class="QWidget" name="tab_3">
     <attribute name="title">
@@ -118,6 +118,9 @@
         <pointsize>9</pointsize>
        </font>
       </property>
+      <property name="toolTip">
+       <string>jump volatility</string>
+      </property>
       <property name="text">
        <string>δ = </string>
       </property>
@@ -130,6 +133,9 @@
         <width>140</width>
         <height>20</height>
        </rect>
+      </property>
+      <property name="toolTip">
+       <string>dividend yield</string>
       </property>
       <property name="minimum">
        <number>0</number>
@@ -170,6 +176,9 @@
         <pointsize>9</pointsize>
        </font>
       </property>
+      <property name="toolTip">
+       <string>volatility</string>
+      </property>
       <property name="text">
        <string>σ =</string>
       </property>
@@ -182,6 +191,9 @@
         <width>140</width>
         <height>20</height>
        </rect>
+      </property>
+      <property name="toolTip">
+       <string>spot price</string>
       </property>
       <property name="minimum">
        <number>80</number>
@@ -226,6 +238,9 @@
         <pointsize>9</pointsize>
        </font>
       </property>
+      <property name="toolTip">
+       <string>jump rate</string>
+      </property>
       <property name="text">
        <string>λ = </string>
       </property>
@@ -241,6 +256,9 @@
         <width>140</width>
         <height>21</height>
        </rect>
+      </property>
+      <property name="toolTip">
+       <string>maturity</string>
       </property>
       <property name="minimum">
        <number>1</number>
@@ -284,6 +302,9 @@
         <pointsize>9</pointsize>
        </font>
       </property>
+      <property name="toolTip">
+       <string>dividend yield</string>
+      </property>
       <property name="text">
        <string>q =</string>
       </property>
@@ -303,6 +324,9 @@
         <pointsize>9</pointsize>
        </font>
       </property>
+      <property name="toolTip">
+       <string>jump mean</string>
+      </property>
       <property name="text">
        <string>γ = </string>
       </property>
@@ -315,6 +339,9 @@
         <width>140</width>
         <height>21</height>
        </rect>
+      </property>
+      <property name="toolTip">
+       <string>volatility</string>
       </property>
       <property name="minimum">
        <number>0</number>
@@ -355,6 +382,9 @@
         <pointsize>9</pointsize>
        </font>
       </property>
+      <property name="toolTip">
+       <string>risk free rate</string>
+      </property>
       <property name="text">
        <string>r = </string>
       </property>
@@ -372,6 +402,9 @@
        <font>
         <pointsize>9</pointsize>
        </font>
+      </property>
+      <property name="toolTip">
+       <string>maturity</string>
       </property>
       <property name="text">
        <string>t= 1</string>
@@ -391,6 +424,9 @@
         <pointsize>9</pointsize>
        </font>
       </property>
+      <property name="toolTip">
+       <string>strike price</string>
+      </property>
       <property name="text">
        <string>K = </string>
       </property>
@@ -408,7 +444,7 @@
        <bool>true</bool>
       </property>
       <property name="toolTip">
-       <string>No. of paths to be shown</string>
+       <string>jump mean</string>
       </property>
       <property name="minimum">
        <number>0</number>
@@ -450,6 +486,9 @@
         <height>20</height>
        </rect>
       </property>
+      <property name="toolTip">
+       <string>risk free rate</string>
+      </property>
       <property name="minimum">
        <number>0</number>
       </property>
@@ -480,6 +519,9 @@
         <width>140</width>
         <height>20</height>
        </rect>
+      </property>
+      <property name="toolTip">
+       <string>strike price</string>
       </property>
       <property name="minimum">
        <number>80</number>
@@ -523,6 +565,9 @@
         <pointsize>9</pointsize>
        </font>
       </property>
+      <property name="toolTip">
+       <string>spot price</string>
+      </property>
       <property name="text">
        <string>S0 = 100</string>
       </property>
@@ -540,7 +585,7 @@
        <bool>true</bool>
       </property>
       <property name="toolTip">
-       <string>No. of paths to be shown</string>
+       <string>jump volatility</string>
       </property>
       <property name="minimum">
        <number>0</number>
@@ -586,7 +631,7 @@
        <bool>true</bool>
       </property>
       <property name="toolTip">
-       <string>No. of paths to be shown</string>
+       <string>jump rate</string>
       </property>
       <property name="minimum">
        <number>0</number>
@@ -645,7 +690,7 @@
      <property name="geometry">
       <rect>
        <x>1140</x>
-       <y>630</y>
+       <y>660</y>
        <width>121</width>
        <height>41</height>
       </rect>
@@ -747,6 +792,19 @@
       <string/>
      </property>
     </widget>
+    <widget class="QPushButton" name="button_Help_Merton">
+     <property name="geometry">
+      <rect>
+       <x>1170</x>
+       <y>620</y>
+       <width>91</width>
+       <height>28</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Help</string>
+     </property>
+    </widget>
    </widget>
    <widget class="QWidget" name="tab">
     <attribute name="title">
@@ -801,6 +859,9 @@
         <pointsize>9</pointsize>
        </font>
       </property>
+      <property name="toolTip">
+       <string>θ &gt; 0 the mean reversion level for the variance</string>
+      </property>
       <property name="text">
        <string>θ = </string>
       </property>
@@ -813,6 +874,9 @@
         <width>140</width>
         <height>20</height>
        </rect>
+      </property>
+      <property name="toolTip">
+       <string>the dividend yield for the stock</string>
       </property>
       <property name="minimum">
        <number>0</number>
@@ -853,6 +917,9 @@
         <pointsize>9</pointsize>
        </font>
       </property>
+      <property name="toolTip">
+       <string>σ &gt; 0 the volatility of the variance</string>
+      </property>
       <property name="text">
        <string>σ =</string>
       </property>
@@ -865,6 +932,9 @@
         <width>140</width>
         <height>20</height>
        </rect>
+      </property>
+      <property name="toolTip">
+       <string>spot price</string>
       </property>
       <property name="minimum">
        <number>80</number>
@@ -909,6 +979,9 @@
         <pointsize>9</pointsize>
        </font>
       </property>
+      <property name="toolTip">
+       <string>ν0 &gt; 0 the initial level of the variance</string>
+      </property>
       <property name="text">
        <string>v0 = </string>
       </property>
@@ -924,6 +997,9 @@
         <width>140</width>
         <height>21</height>
        </rect>
+      </property>
+      <property name="toolTip">
+       <string>maturity</string>
       </property>
       <property name="minimum">
        <number>1</number>
@@ -967,6 +1043,9 @@
         <pointsize>9</pointsize>
        </font>
       </property>
+      <property name="toolTip">
+       <string>the dividend yield for the stock</string>
+      </property>
       <property name="text">
        <string>q =</string>
       </property>
@@ -986,6 +1065,9 @@
         <pointsize>9</pointsize>
        </font>
       </property>
+      <property name="toolTip">
+       <string>κ &gt; 0 the mean reversion speed for the variance</string>
+      </property>
       <property name="text">
        <string>κ = </string>
       </property>
@@ -998,6 +1080,9 @@
         <width>140</width>
         <height>21</height>
        </rect>
+      </property>
+      <property name="toolTip">
+       <string>σ &gt; 0 the volatility of the variance</string>
       </property>
       <property name="minimum">
        <number>0</number>
@@ -1038,6 +1123,9 @@
         <pointsize>9</pointsize>
        </font>
       </property>
+      <property name="toolTip">
+       <string>the risk-free interest rate for the stock</string>
+      </property>
       <property name="text">
        <string>r = </string>
       </property>
@@ -1055,6 +1143,9 @@
        <font>
         <pointsize>9</pointsize>
        </font>
+      </property>
+      <property name="toolTip">
+       <string>maturity</string>
       </property>
       <property name="text">
        <string>t= 1</string>
@@ -1074,6 +1165,9 @@
         <pointsize>9</pointsize>
        </font>
       </property>
+      <property name="toolTip">
+       <string>strike price</string>
+      </property>
       <property name="text">
        <string>K = </string>
       </property>
@@ -1091,7 +1185,7 @@
        <bool>true</bool>
       </property>
       <property name="toolTip">
-       <string>No. of paths to be shown</string>
+       <string>κ &gt; 0 the mean reversion speed for the variance</string>
       </property>
       <property name="minimum">
        <number>0</number>
@@ -1133,6 +1227,9 @@
         <height>20</height>
        </rect>
       </property>
+      <property name="toolTip">
+       <string>the risk-free interest rate for the stock</string>
+      </property>
       <property name="minimum">
        <number>0</number>
       </property>
@@ -1163,6 +1260,9 @@
         <width>140</width>
         <height>20</height>
        </rect>
+      </property>
+      <property name="toolTip">
+       <string>strike price</string>
       </property>
       <property name="minimum">
        <number>80</number>
@@ -1206,6 +1306,9 @@
         <pointsize>9</pointsize>
        </font>
       </property>
+      <property name="toolTip">
+       <string>spot price</string>
+      </property>
       <property name="text">
        <string>S0 = 100</string>
       </property>
@@ -1223,7 +1326,7 @@
        <bool>true</bool>
       </property>
       <property name="toolTip">
-       <string>No. of paths to be shown</string>
+       <string>θ &gt; 0 the mean reversion level for the variance</string>
       </property>
       <property name="minimum">
        <number>0</number>
@@ -1269,7 +1372,7 @@
        <bool>true</bool>
       </property>
       <property name="toolTip">
-       <string>No. of paths to be shown</string>
+       <string>ν0 &gt; 0 the initial level of the variance</string>
       </property>
       <property name="minimum">
        <number>0</number>
@@ -1317,6 +1420,9 @@
         <pointsize>9</pointsize>
        </font>
       </property>
+      <property name="toolTip">
+       <string>ρ ∈ [−1,1] the correlation between the two Brownian motions W1 and W2</string>
+      </property>
       <property name="text">
        <string>ρ = </string>
       </property>
@@ -1334,7 +1440,7 @@
        <bool>true</bool>
       </property>
       <property name="toolTip">
-       <string>No. of paths to be shown</string>
+       <string>ρ ∈ [−1,1] the correlation between the two Brownian motions W1 and W2</string>
       </property>
       <property name="minimum">
        <number>-100</number>
@@ -1471,6 +1577,11 @@
      </property>
      <item>
       <property name="text">
+       <string>100</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
        <string>200</string>
       </property>
      </item>
@@ -1502,6 +1613,19 @@
      </property>
      <property name="text">
       <string/>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="button_Help_Heston">
+     <property name="geometry">
+      <rect>
+       <x>1172</x>
+       <y>630</y>
+       <width>91</width>
+       <height>28</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Help</string>
      </property>
     </widget>
    </widget>
