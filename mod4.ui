@@ -173,6 +173,7 @@
       </property>
       <property name="font">
        <font>
+        <family>Tahoma</family>
         <pointsize>9</pointsize>
        </font>
       </property>
@@ -299,6 +300,7 @@
       </property>
       <property name="font">
        <font>
+        <family>Tahoma</family>
         <pointsize>9</pointsize>
        </font>
       </property>
@@ -379,6 +381,7 @@
       </property>
       <property name="font">
        <font>
+        <family>Tahoma</family>
         <pointsize>9</pointsize>
        </font>
       </property>
@@ -400,6 +403,7 @@
       </property>
       <property name="font">
        <font>
+        <family>Tahoma</family>
         <pointsize>9</pointsize>
        </font>
       </property>
@@ -421,6 +425,7 @@
       </property>
       <property name="font">
        <font>
+        <family>Tahoma</family>
         <pointsize>9</pointsize>
        </font>
       </property>
@@ -562,6 +567,7 @@
       </property>
       <property name="font">
        <font>
+        <family>Tahoma</family>
         <pointsize>9</pointsize>
        </font>
       </property>
@@ -676,6 +682,7 @@
      </property>
      <property name="font">
       <font>
+       <family>Tahoma</family>
        <pointsize>10</pointsize>
       </font>
      </property>
@@ -750,6 +757,7 @@
      </property>
      <property name="font">
       <font>
+       <family>Tahoma</family>
        <pointsize>10</pointsize>
       </font>
      </property>
@@ -785,11 +793,13 @@
      <property name="font">
       <font>
        <family>Tahoma</family>
-       <pointsize>9</pointsize>
+       <pointsize>12</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
       </font>
      </property>
      <property name="text">
-      <string/>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
     </widget>
     <widget class="QPushButton" name="button_Help_Merton">
@@ -914,6 +924,7 @@
       </property>
       <property name="font">
        <font>
+        <family>Tahoma</family>
         <pointsize>9</pointsize>
        </font>
       </property>
@@ -1040,6 +1051,7 @@
       </property>
       <property name="font">
        <font>
+        <family>Tahoma</family>
         <pointsize>9</pointsize>
        </font>
       </property>
@@ -1120,6 +1132,7 @@
       </property>
       <property name="font">
        <font>
+        <family>Tahoma</family>
         <pointsize>9</pointsize>
        </font>
       </property>
@@ -1141,6 +1154,7 @@
       </property>
       <property name="font">
        <font>
+        <family>Tahoma</family>
         <pointsize>9</pointsize>
        </font>
       </property>
@@ -1162,6 +1176,7 @@
       </property>
       <property name="font">
        <font>
+        <family>Tahoma</family>
         <pointsize>9</pointsize>
        </font>
       </property>
@@ -1303,6 +1318,7 @@
       </property>
       <property name="font">
        <font>
+        <family>Tahoma</family>
         <pointsize>9</pointsize>
        </font>
       </property>
@@ -1485,6 +1501,7 @@
      </property>
      <property name="font">
       <font>
+       <family>Tahoma</family>
        <pointsize>10</pointsize>
       </font>
      </property>
@@ -1553,6 +1570,7 @@
      </property>
      <property name="font">
       <font>
+       <family>Tahoma</family>
        <pointsize>10</pointsize>
       </font>
      </property>
@@ -1573,7 +1591,7 @@
       <bool>true</bool>
      </property>
      <property name="currentText">
-      <string>200</string>
+      <string>100</string>
      </property>
      <item>
       <property name="text">
@@ -1608,7 +1626,9 @@
      <property name="font">
       <font>
        <family>Tahoma</family>
-       <pointsize>9</pointsize>
+       <pointsize>12</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
       </font>
      </property>
      <property name="text">

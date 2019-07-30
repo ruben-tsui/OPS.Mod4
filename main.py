@@ -8,8 +8,9 @@ import sys
 #from PyQt5.QtCore import Qt
 from PyQt5 import QtCore, QtGui, QtWidgets, uic
 from PyQt5.QtWidgets import QDialog, QApplication, QPushButton, QVBoxLayout, QHBoxLayout, QSlider, QLineEdit, QLabel, QTableWidgetItem, QSizePolicy
-from matplotlib.widgets import Slider, Button, RadioButtons
+from PyQt5.QtGui import QIcon, QPixmap
 
+#from matplotlib.widgets import Slider, Button, RadioButtons
 # Libraries for drawing figures
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
@@ -150,6 +151,13 @@ class Window(QtWidgets.QDialog):
         self.label_sigma_Heston.setText(f"σ = {self.σ_Heston}")
         self.label_v0_Heston.setText(f"v0 = {self.v0_Heston}")
         self.label_rho_Heston.setText(f"ρ = {self.ρ_Heston}")
+
+        # set tooltips
+        #self.slider_delta.setToolTip('This is a tooltip message.')  
+        # set help icon
+        icon  = QIcon('information.png')
+        self.button_Help_Merton.setIcon(icon)
+        self.button_Help_Heston.setIcon(icon)
         
         # Make sure window size is set
         self.setGeometry(0, 0, 1366, 768)
@@ -228,6 +236,7 @@ class Window(QtWidgets.QDialog):
         self.showGraph()
 
     def simulate_Merton(self):
+        self.label_Message_Merton.setStyleSheet("color: red")
         self.label_Message_Merton.setText('Processing...')
         self.label_Message_Merton.repaint()
         QApplication.setOverrideCursor(QtCore.Qt.WaitCursor)
@@ -259,6 +268,7 @@ class Window(QtWidgets.QDialog):
         QApplication.restoreOverrideCursor()
 
     def simulate_Heston(self):
+        self.label_Message_Heston.setStyleSheet("color: red")
         self.label_Message_Heston.setText('Processing...')
         self.label_Message_Heston.repaint()
         QApplication.setOverrideCursor(QtCore.Qt.WaitCursor)
@@ -354,10 +364,12 @@ class Window(QtWidgets.QDialog):
         ###############################################################
         s4.set_visible(True)
         s4.clear()
-        s4.hist( [ self.poisson_jumps[n, :self.t+1].sum() for n in range(0,self.N) ], bins=None, \
-            density=True, facecolor='orange', alpha=0.75)
+        data_simulated_poisson = [ self.poisson_jumps[n, :self.t+1].sum() for n in range(0,self.N) ]
+        s4.hist( data_simulated_poisson, bins=range(0, max(data_simulated_poisson)+1), \
+            density=True, rwidth=0.5, align='left', facecolor='orange', alpha=0.75)
         s4.set_title(r"Poisson Jump Distribution", fontsize=11, color='brown')
         #s4.xaxis.set_major_formatter(FuncFormatter('{0}'.format))
+        s4.yaxis.set_major_formatter(FuncFormatter('{0:.0%}'.format))
         s4.xaxis.set_major_locator(MaxNLocator(integer=True))
         s4.grid(True)
         s4.tick_params(axis = 'both', which = 'major', labelsize = 6)
@@ -467,6 +479,7 @@ if __name__ == '__main__':
 
     import sys
     app = QtWidgets.QApplication(sys.argv)
+    app.setStyleSheet("QToolTip { color: black; background-color: #FFFFE0; border: 1px solid white; }")
     ### load appropriately sized UI based on screen resolution detected
     screen = app.primaryScreen()
     screen_width=screen.size().width()
