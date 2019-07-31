@@ -1695,9 +1695,9 @@
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>690</x>
+     <x>600</x>
      <y>0</y>
-     <width>621</width>
+     <width>711</width>
      <height>61</height>
     </rect>
    </property>
@@ -1709,7 +1709,7 @@
     </font>
    </property>
    <property name="text">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;right&quot;&gt;&lt;span style=&quot; font-size:12pt; color:#aa0000;&quot;&gt;TaiwanTech Derivatives Lab&lt;/span&gt;&lt;span style=&quot; font-size:12pt; color:#aa0000; vertical-align:super;&quot;&gt;TM &lt;/span&gt;&lt;span style=&quot; font-size:12pt; color:#313194;&quot;&gt;Option Pricing and Strategies&lt;br/&gt;選擇權定價與策略 Module 4&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;right&quot;&gt;&lt;span style=&quot; font-size:12pt; color:#aa0000;&quot;&gt;TaiwanTech Derivatives Lab&lt;/span&gt;&lt;span style=&quot; font-size:12pt; color:#aa0000; vertical-align:super;&quot;&gt;TM &lt;/span&gt;&lt;span style=&quot; font-size:12pt; color:#313194;&quot;&gt;Option Pricing and Strategies &lt;/span&gt;&lt;span style=&quot; font-size:12pt; color:#aa0000;&quot;&gt;Module 4&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </widget>
  </widget>
