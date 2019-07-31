@@ -75,7 +75,7 @@
      </property>
      <property name="geometry">
       <rect>
-       <x>-20</x>
+       <x>-10</x>
        <y>-10</y>
        <width>1051</width>
        <height>661</height>
@@ -718,7 +718,7 @@
     <widget class="QSlider" name="slider_t1">
      <property name="geometry">
       <rect>
-       <x>90</x>
+       <x>80</x>
        <y>670</y>
        <width>631</width>
        <height>22</height>
@@ -814,6 +814,45 @@
      <property name="text">
       <string>Help</string>
      </property>
+    </widget>
+    <widget class="QComboBox" name="comboBox_SimSize_Merton">
+     <property name="geometry">
+      <rect>
+       <x>1060</x>
+       <y>560</y>
+       <width>81</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="toolTip">
+      <string>simulation size</string>
+     </property>
+     <property name="editable">
+      <bool>true</bool>
+     </property>
+     <property name="currentText">
+      <string>100</string>
+     </property>
+     <item>
+      <property name="text">
+       <string>100</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>200</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>500</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>1000</string>
+      </property>
+     </item>
     </widget>
    </widget>
    <widget class="QWidget" name="tab">
@@ -1578,7 +1617,7 @@
       <string>100</string>
      </property>
     </widget>
-    <widget class="QComboBox" name="comboBox_SimSize">
+    <widget class="QComboBox" name="comboBox_SimSize_Heston">
      <property name="geometry">
       <rect>
        <x>1070</x>
@@ -1586,6 +1625,9 @@
        <width>81</width>
        <height>31</height>
       </rect>
+     </property>
+     <property name="toolTip">
+      <string>simulation size</string>
      </property>
      <property name="editable">
       <bool>true</bool>
@@ -1638,7 +1680,7 @@
     <widget class="QPushButton" name="button_Help_Heston">
      <property name="geometry">
       <rect>
-       <x>1190</x>
+       <x>1200</x>
        <y>30</y>
        <width>91</width>
        <height>28</height>

@@ -59,7 +59,8 @@ class Window(QtWidgets.QDialog):
         # other useful info
         # default values for all parameters
         ## Common parameters
-        self.N = int(self.comboBox_SimSize.currentText()) # simulation size
+        self.N = int(self.comboBox_SimSize_Merton.currentText()) # simulation size
+        
         self.Δt = 0.002
         ## Merton
         self.S0 = 100
@@ -131,6 +132,7 @@ class Window(QtWidgets.QDialog):
         self.button_PickSim_Heston.clicked.connect(self.PickSim_Heston)
         self.button_PickSim_Merton.clicked.connect(self.PickSim_Merton)
 
+
         # initialize parameter values - Merton
         self.label_S0.setText(f"S0 = {self.S0}")
         self.label_K.setText(f"K = {self.K}")
@@ -158,17 +160,33 @@ class Window(QtWidgets.QDialog):
         icon  = QIcon('information.png')
         self.button_Help_Merton.setIcon(icon)
         self.button_Help_Heston.setIcon(icon)
-        
+
+        # initialize self.comboBox_SimSize is changed
+        self.comboBox_SimSize_Heston.setCurrentText('100')
+        self.comboBox_SimSize_Merton.setCurrentText('100')
+        # not working
+
+        self.tabWidget.tabBarClicked.connect(self.on_click_tabWidget)
+
         # Make sure window size is set
         self.setGeometry(0, 0, 1366, 768)
 
+    def on_click_tabWidget(self):
+        #self.tabWidget.repaint()
+        self.tabWidget.update()
+        self.oMplCanvas.update()
+        self.oMplCanvas_Heston.update()
+        #QApplication.repaint()
+
     def executeHelpPage1(self):
         help_page = HelpPage1()
-        help_page.exec_()
+        help_page.exec_() # modal
+        #help_page.run() # non-modal: not working
 
     def executeHelpPage2(self):
         help_page = HelpPage2()
-        help_page.exec_()
+        help_page.exec_() # modal
+        #help_page.show() # non-modal: not working
 
     # Heston model
     def on_change_t1_Heston(self, value):
@@ -236,6 +254,7 @@ class Window(QtWidgets.QDialog):
         self.showGraph()
 
     def simulate_Merton(self):
+        self.N = int(self.comboBox_SimSize_Merton.currentText())
         self.label_Message_Merton.setStyleSheet("color: red")
         self.label_Message_Merton.setText('Processing...')
         self.label_Message_Merton.repaint()
@@ -268,6 +287,7 @@ class Window(QtWidgets.QDialog):
         QApplication.restoreOverrideCursor()
 
     def simulate_Heston(self):
+        self.N = int(self.comboBox_SimSize_Heston.currentText())
         self.label_Message_Heston.setStyleSheet("color: red")
         self.label_Message_Heston.setText('Processing...')
         self.label_Message_Heston.repaint()
@@ -365,7 +385,7 @@ class Window(QtWidgets.QDialog):
         s4.set_visible(True)
         s4.clear()
         data_simulated_poisson = [ self.poisson_jumps[n, :self.t+1].sum() for n in range(0,self.N) ]
-        s4.hist( data_simulated_poisson, bins=range(0, max(data_simulated_poisson)+1), \
+        s4.hist( data_simulated_poisson, bins=range(0, max  (6,max(data_simulated_poisson)+1)), \
             density=True, rwidth=0.5, align='left', facecolor='orange', alpha=0.75)
         s4.set_title(r"Poisson Jump Distribution", fontsize=11, color='brown')
         #s4.xaxis.set_major_formatter(FuncFormatter('{0}'.format))
@@ -463,7 +483,7 @@ class Window(QtWidgets.QDialog):
         s4.clear()
         s4.hist(volatility_at_t, bins=25, density=True, orientation='vertical', alpha=0.70, color='orange')
         s4.set_title(r"Stochastic Volatility Distribution", fontsize=11, color='brown')
-        s4.xaxis.set_major_formatter(FuncFormatter('{0:.1%}'.format))
+        s4.xaxis.set_major_formatter(FuncFormatter('{0:.1}'.format))
         s4.grid(True)
         s4.tick_params(axis = 'both', which = 'major', labelsize = 6)
         s4.set_xlabel('volatility', fontsize=8, color='brown')
